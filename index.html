@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>میوه‌فروشی آنلاین</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 22px;
+      position: relative;
+    }
+    header a {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      background: #ff9800;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    header a:hover {
+      background: #e68900;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .btn {
+      background: #ff9800;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #e68900;
+    }
+    #cart {
+      background: #fff3cd;
+      padding: 15px;
+      margin: 20px;
+      border: 1px solid #ffeeba;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🍎 میوه‌فروشی آنلاین
+    <a id="authLink" href="signup.html" target="_blank">ثبت‌نام</a>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <img src="images/apple.jpg" alt="سیب">
+      <h3>سیب</h3>
+      <p>30,000 تومان</p>
+      <button class="btn" onclick="addToCart('سیب')">افزودن</button>
+    </div>
+
+    <div class="card">
+      <img src="images/banana.jpg" alt="موز">
+      <h3>موز</h3>
+      <p>40,000 تومان</p>
+      <button class="btn" onclick="addToCart('موز')">افزودن</button>
+    </div>
+    <!-- بقیه میوه‌ها -->
+  </div>
+
+  <div id="cart">
+    <h3>🛒 سبد خرید:</h3>
+    <ul id="cartItems"></ul>
+  </div>
+
+  <script>
+    // افزودن به سبد خرید
+    function addToCart(item) {
+      const list = document.getElementById("cartItems");
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    }
+
+    // تغییر لینک ثبت‌نام به ورود اگر کاربر قبلاً ثبت‌نام کرده
+    window.onload = function() {
+      const username = localStorage.getItem("username");
+      const password = localStorage.getItem("password");
+      if (username && password) {
+        document.getElementById("authLink").innerText = "ورود";
+        document.getElementById("authLink").href = "login.html";
+        document.getElementById("authLink").target = "_blank";
+      }
+    }
+  </script>
+</body>
+</html>
